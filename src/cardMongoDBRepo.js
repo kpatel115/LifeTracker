@@ -1,7 +1,7 @@
 const { MongoClient, ObjectId } = require('mongodb');
 const Card = require('./Card'); 
 
-const url = 'mongodb+srv://kpatel115:<password>@cluster0.uemyhfp.mongodb.net/?retryWrites=true&w=majority';
+const url = 'mongodb+srv://DB_USER:DB_PASS@DB_NAME.uemyhfp.mongodb.net/?retryWrites=true&w=majority';
 
 const client = new MongoClient(url);
 
@@ -19,57 +19,62 @@ run()
 
 const repo = {
   findAll: async () => {
-    let contacts = [];
-    const cardCol = client.db('contactMongoDB').collection('expresscontacts');
-    const cursor = contactCol.find({});
-    await cursor.forEach(contact => {
-      const aContact = new Contact(contact._id, contact.name, contact.lname, contact.email, contact.notes, contact.time);
-      contacts.push(aContact);
+    let cards = []; // list of cards
+    const cardCol = client.db('lifetrackerDB').collection('lifetrackerCollection'); // cards collection in mongodb
+    const cursor = cardCol.find({});
+    await cursor.forEach(card => {
+      const card = new Card(card._id, card.name, card.meals, card.macros, card.calories, card.water, card.workout, card.type, card.duration, card.notes, card.time);
+      cards.push(aCard);
     });
     return contacts;
   },
   findById: async (uuid) => {
-    const contactCol = client.db('contactMongoDB').collection('expresscontacts');
+    const cardCol = client.db('lifetrackerDB').collection('lifetrackerCollection');
     const filter = {
       '_id': new ObjectId(uuid),
 
     };
-    const contact = await contactCol.findOne(filter);
-    return new Contact(uuid, contact.name, contact.lname, contact.email, contact.notes, );
+    const card = await cardCol.findOne(filter);
+    return new Card(uuid, card.name, card.meals, card.macros, card.calories, card.water, card.workout, card.type, card.duration, card.notes, card.time );
   },
-  create: async (contact) => {
-    const doc = {name: contact.name, lname: contact.lname, email: contact.email, notes: contact.notes, time: contact.time};
-    const contactCol = client.db('contactMongoDB').collection('expresscontacts');
-    const result = await contactCol.insertOne(doc);
+  create: async (card) => {
+    const doc = {name: card.name, meals: card.meals, macros: card.macros, calories: card.calories, water: card.water, workout: card.workout, type: card.type, duration: card.duration, notes: card.notes, time: card.time};
+    const cardCol = client.db('lifetrackerDB').collection('lifetrackerCollection');
+    const result = await cardCol.insertOne(doc);
     console.log(`A document was inserted with the _id: ${result.insertedId}`);
   },
   deleteById: async (uuid) => {
-    const contactCol = client.db('contactMongoDB').collection('expresscontacts');
+    const cardCol = client.db('lifetrackerDB').collection('lifetrackerDB');
     const filter = {
       '_id': new ObjectId(uuid)
     };
-    const result = await contactCol.deleteOne(filter);
+    const result = await cardCol.deleteOne(filter);
     if (result.deletedCount === 1) {
       console.log("Successfully deleted a documents.");
     } else {
       console.log("No documents matched the query. Deleted 0 documents.");
     }
   },
-  update: async (contact) => { 
-    const contactCol = client.db('contactMongoDB').collection('expresscontacts');
+  update: async (card) => { 
+    const cardCol = client.db('lifetrackerDB').collection('lifetrackerCollection');
     const filter = {
-      '_id': new ObjectId(contact.id)
+      '_id': new ObjectId(card.id)
     };
     const updateDoc = {
       $set: {
-      name: contact.name,
-      lname: contact.lname,
-      email: contact.email,
-      notes: contact.notes,
+      name: card.name,
+      meals: card.meals, 
+      macros: card.macros, 
+      calories: card.calories, 
+      water: card.water, 
+      workout: card.workout, 
+      type: card.type, 
+      duration: card.duration, 
+      notes: card.notes, 
       time: newdate
       }
     };
-    const result = await contactCol.updateOne(filter, updateDoc);
+    const result = await cardCol.updateOne(filter, updateDoc);
     console.log(`${result.matchedCount} docs matched the filter, updated ${result.modifiedCount} document(s)`);
   },
 };
