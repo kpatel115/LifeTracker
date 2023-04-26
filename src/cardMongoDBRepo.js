@@ -25,7 +25,7 @@ const repo = {
     const cardCol = client.db('lifetrackerDB').collection('lifetrackerCollection'); // cards collection in mongodb
     const cursor = cardCol.find({});
     await cursor.forEach(card => {
-      const card = new Card(card._id, card.name, card.meals, card.macros, card.calories, card.water, card.workout, card.type, card.duration, card.notes, card.time);
+      const aCard = new Card(card._id, card.name, card.meals, card.macros, card.calories, card.water, card.workout, card.type, card.duration, card.notes, card.time);
       cards.push(aCard);
     });
     return cards;

@@ -6,18 +6,65 @@ block content
   
   h2 Here is the homepage for user login account displaying CRUD for one daily card and prior cards
 
-  section.user-card
+  section.user-car
   nav.user-nav
     .nav-box
       ul.nav-menu1
-        li 
-          a(href="/card")
-        li 
+        li Home
           a(href="/")
             i.fa-solid.fa-house(aria-hidden='true') 
-      ul.nav-menu2
-        li ahref1 
-        li ahref2
+        li Profile 
+          a(href='/cards')
+            i.fa-solid.fa-user(aria-hidden='true')
+  hr
+  
+  div 
+
+    p 
+    | Name: 
+    = card.name
+    p 
+    | Meals: 
+    = card.meals
+    p 
+    | Macros: 
+    = card.macros
+    p 
+    | calories: 
+    = card.calories
+    p 
+    | water: 
+    = card.water
+    p 
+    | workout: 
+    = card.workout
+    p 
+    | type: 
+    = card.type
+    p 
+    | duration: 
+    = card.duration
+    p 
+    | notes: 
+    = card.notes
+    p 
+    | Timestamp: 
+    = card.time
+    p 
+    | Contact UUID: 
+    = card.id 
+
+    .card-actions 
+      a(href="/cards") View All Contacts
+      br
+      br
+      br
+      a(href=`/cards/${card.id}/delete`) Delete Health Card
+      br 
+      br
+      br
+      
+      a(href=`/cards/${card.id}/edit`) Edit Health Card
 
   .user-cards
     h2 View your LifeTracker Cards!

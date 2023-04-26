@@ -22,7 +22,16 @@ block content
   hr
   .user-cards
     h2 View your LifeTracker Cards!
+    if cards.length > 0
+    #user-cards-list 
+      ul.cards-list 
+        each val in cards
+          li(data-cardid=val.id)= val.name
+            | 
+            a(href=`/cards/${val.id}`)= val.notess
+              i.fa-solid.fa-address-card(aria-hidden='true')
     hr
+
   .user-card
     h2 Create a LifeTracker Card!
     hr
