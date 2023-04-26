@@ -12,7 +12,7 @@ var cardRouter = require('./routes/card');
 
 var app = express();
 
-
+/*
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = "mongodb+srv://kpatel115:f17ios89@cluster0.uemyhfp.mongodb.net/?retryWrites=true&w=majority";
 
@@ -24,6 +24,7 @@ const client = new MongoClient(uri, {
     deprecationErrors: true,
   }
 });
+
 async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
@@ -37,7 +38,7 @@ async function run() {
   }
 }
 run().catch(console.dir);
-
+*/
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');

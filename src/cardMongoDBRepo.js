@@ -4,12 +4,12 @@ const databaseName = process.env.DB_NAME;
 const databaseUser = process.env.DB_USER;
 const databasePass = process.env.DB_PASS;
 
-
+const url = "mongodb+srv://kpatel115:f17ios89@cluster0.uemyhfp.mongodb.net/?retryWrites=true&w=majority";
 const client = new MongoClient(url);
 
 var date = new Date(); 
 var newdate = date.toGMTString();
-/*
+
 async function run() {
   await client.connect();
   return 'Connected to the MongoDB server...';
@@ -18,7 +18,7 @@ async function run() {
 run()
   .then(console.log)
   .catch(console.error);
-*/
+
 const repo = {
   findAll: async () => {
     let cards = []; // list of cards
