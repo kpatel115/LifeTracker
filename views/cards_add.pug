@@ -5,3 +5,63 @@ block content
   p Welcome to #{title}
   
   h2 User Creates a Card
+  hr
+  if msg 
+    p(class="error-msg") = msg
+
+  div.user-form
+    h2 Add a Health Card for the spent day
+
+    form(method='POST', action='/cards/add')
+    
+      label Name
+      | 
+      input(type='text' name='name' required)
+      br
+      label Meals
+      | 
+      input(type='textarea' name='meals' required)
+      br
+      label Macros
+      | 
+      input(type='textarea' name='macros')
+      br
+      label Calories
+      | 
+      input(type='number' name='calories')
+      br
+      label Water
+      | 
+      input(type='number' name='water')
+      br
+      label Workout
+      | 
+      input(type='text' name='workout')
+      br
+      label Type
+      | 
+      input(type='text' name='type')
+      br
+      label Duration
+      | 
+      input(type='text' name='duration')
+      br
+      label Notes
+      | 
+      input(type='textarea' name='notes')
+      br
+      label Calories
+      | 
+      input(type='number' name='calories')
+      br
+    
+      label Click to create health card
+      | 
+      button.btn-add(type='submit')
+        i.fa-solid.fa-plus(aria-hidden='true') 
+    br 
+    br
+    br
+    a(href='/cards') Go Back
+      
+

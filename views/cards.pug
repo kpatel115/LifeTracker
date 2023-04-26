@@ -5,3 +5,19 @@ block content
   p Welcome to #{title}
   
   h2 Here are the list view of all cards belonging to User Login Account
+  section.user-card
+  nav.user-nav
+    .nav-box
+      ul.nav-menu1
+        li Home
+          a(href="/")
+            i.fa-solid.fa-house(aria-hidden='true') 
+        li Create Health Card 
+          a(href='/cards/add')
+            i.fa-solid.fa-plus(aria-hidden='true') 
+
+  .user-cards
+    h2 View your LifeTracker Cards!
+  .user-card
+    h2 Create a LifeTracker Card!
+    
