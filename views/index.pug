@@ -4,43 +4,39 @@ block content
   h1= title
   p Welcome to #{title}
 
-  div.index-welcome 
-    h1 LifeTracker 
-    p Keep track of your life! 
+  section.home-section
 
+  .home-welcome-div
+    h1 LifeTracker
+    p Track your Life!
     h2 What is LifeTracker?
     p LifeTracker is a web application that helps users keep track of their fitness and health 
   
     h2 How does LifeTracker Work?
     p Users keep health cards of each day and track thier meals/exercise 
     p Users can also interact with other users in the blog area.
-  div.index-signin 
-    h3 Login 
-    form(action="POST") 
-      label(for="") 
-      input(type="text") 
+
+  .home-login-div
+    img(src='/public/images/logo.png')
+    h2 Sign in to LifeTracker
+    .home-login-form
+      form
+        label Username or Email
+        input(type='Email')
+        br
+        label Password
+        input(type='password')
+        br
+        button(type='submit') Sign In
+    .home-register-google
+      button Register
+      button
+        i.fa-brands.fa-google(aria-hidden='true') 
 
   
-  div.index-introduction
-    h2 LifeTracker
-    p This app allows a user to keep track of their health by creating cards with daily intake of food/water and exercise. 
-    p Users can implement CRUD operations on their health cards as well as open blog posts to see what other users are up to.
-    
-
-    h2 How to use the App 
-    p Click on the view contacts database button to begin and start creating your contacts.
-
-    h2 Contact Info
-
-    h3 Karan Patel 
-    p IIT Graduate Student in ITM Specializing in Web Design and Application Development 
-    
-    h4 Email 
-    p kpatel114@hawk.iit.edu
-    br
-
+  
   div 
-    label View Contacts Database
-      a(href="/contacts")
-        i.fa-solid.fa-database(aria-hidden='true') 
+    label Enter user account page - after signing in
+      a(href="/card")
+        i.fa-solid.fa-arrow-right(aria-hidden='true') 
         
