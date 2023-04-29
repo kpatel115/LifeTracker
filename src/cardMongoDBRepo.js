@@ -18,14 +18,14 @@ const repo = {
   findAll: async () => {
     let cards = []; // list of cards
     const cardCol = client.db('lifetrackerDB').collection('lifetrackerCollection'); // cards collection in mongodb
-    const cursor = cardCol.find({});
-    const cardDocs = await cursor.toArray();
+    const cardDocs = await cardCol.find({}).toArray();;
+    
 
-    if (cardDocs) {
-      cardDocs.forEach((document, i) => {
-        console.log(document);
-        return document
-      });
+    if (cardDocs.length > 0) {
+      //cardDocs.forEach((document, i) => {
+        //console.log(document);
+        return cardDocs
+      
     } else {
       console.log('No cards found');
     }

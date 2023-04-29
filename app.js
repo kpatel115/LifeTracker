@@ -8,6 +8,8 @@ var dotenv = require('dotenv');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var cardRouter = require('./routes/cards');
+var loginRouter = require('./routes/index');
+var registerRouter = require('./routes/index');
 
 
 var app = express();
@@ -50,6 +52,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/cards', cardRouter);
 app.use('/users', usersRouter);
 app.use('/cards', cardRouter);
 

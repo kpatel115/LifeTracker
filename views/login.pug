@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+
+  div.home-login-div
+    img(src='/public/images/logo.png')
+    h2 Login to LifeTracker
+    div.home-login-form
+      form(action='/login' method='POST')
+        label(for='email') Email
+        input(type='email' id='email' name='email' required)
+        br
+        label(for='password') Password
+        input(type='password' id='password' name='password' required)
+        br
+        button(type='submit') Login
+    
+    .home-register-google
+      button
+        i.fa-brands.fa-google(aria-hidden='true') 
+
+  div 
+    label Enter user account page - after signing in
+      a(href="/cards")
+        i.fa-solid.fa-arrow-right(aria-hidden='true') 
+        
+        

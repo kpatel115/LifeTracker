@@ -19,13 +19,20 @@ block content
         li Create Health Card 
           a(href='/cards/add')
             i.fa-solid.fa-plus(aria-hidden='true') 
+        li Register 
+          a(href='/register')
+            i.fa-solid.fa-plus(aria-hidden='true') 
+        li Logout 
+          a(href='/')
+            i.fa-solid.fa-plus(aria-hidden='true') 
   hr
   .user-cards
     h2 View your LifeTracker Cards!
-      each document in cardDocs     
+    ul
+      each card in cardDocs
         li 
-          h3 #{document.name}
-          p #{document._id}
+          h3 #{card.name}
+          p #{card._id}
 
   .user-card
     h2 Create a LifeTracker Card!
