@@ -28,11 +28,18 @@ block content
   hr
   .user-cards
     h2 View your LifeTracker Cards!
-    ul
-      each card in cardDocs
-        li 
-          h3 #{card.name}
-          p #{card._id}
+    if cardDocs
+      table 
+        tr  
+          th name 
+          th macros
+        each document in cardDocs 
+          tr 
+            td= document.name 
+            td= document.macros 
+    else 
+      p No cards yet 
+
 
   .user-card
     h2 Create a LifeTracker Card!

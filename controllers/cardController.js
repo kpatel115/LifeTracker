@@ -7,7 +7,7 @@ const Card = require('../src/Card');
 /* GET Contacts listing. */
 exports.cards_list = async function(req, res, next) {
   const data = await cardRepo.findAll();
-  res.render('cards', { title: 'LifeTracker', cards: data });
+  res.render('cards', { title: 'LifeTracker', document: data });
 };
 
 /* GET create health card */
@@ -21,7 +21,7 @@ exports.cards_create_post = async function(req, res, next) {
   if (!result.isEmpty()) {
     res.render('cards_add', { title: 'Add a Health Card', msg: result.array() });
   } else {
-    const newCard = new Card(req.params.uuid, req.body.name, req.body.lname, req.body.email, req.body.notes, req.params.time);
+    const newCard = new Card(req.params.uuid, req.body.name, req.body.meals, req.body.macros, req.body.calories, req.body.water, req.body.workout, req.body.type, req.body.duration, req.body.notes,  req.params.time);
     await cardRepo.create(newCard);
     res.redirect('/cards');
   }
@@ -29,7 +29,7 @@ exports.cards_create_post = async function(req, res, next) {
 
 /* GET single Health Card. */
 exports.cards_detail = async function(req, res, next) {
-  const card = await cardRepo.findById(req.params.uuid);
+  const card = await cardRepo.findById(req.params.id);
   if (card) {
     res.render('card', { title: 'Your Health Card', card: card });
   } else {
