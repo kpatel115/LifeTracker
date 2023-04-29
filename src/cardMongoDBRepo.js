@@ -4,8 +4,6 @@ const Card = require('./Card');
 const url = "mongodb+srv://kpatel115:f17ios89@cluster0.uemyhfp.mongodb.net/?retryWrites=true&w=majority";
 const client = new MongoClient(url);
 
-var date = new Date(); 
-var newdate = date.toGMTString();
 
 async function run() {
   await client.connect();
@@ -21,16 +19,21 @@ const repo = {
     let cards = []; // list of cards
     const cardCol = client.db('lifetrackerDB').collection('lifetrackerCollection'); // cards collection in mongodb
     const cursor = cardCol.find({});
-    await cursor.forEach(card => {
-      const aCard = new Card(card._id, card.name, card.meals, card.macros, card.calories, card.water, card.workout, card.type, card.duration, card.notes, card.time);
-      cards.push(aCard);
-    });
-    return cards;
+    const cardDocs = await cursor.toArray();
+
+    if (cardDocs) {
+      cardDocs.forEach((document, i) => {
+        console.log(document);
+        return document
+      });
+    } else {
+      console.log('No cards found');
+    }
   },
   findById: async (uuid) => {
     const cardCol = client.db('lifetrackerDB').collection('lifetrackerCollection');
     const filter = {
-      '_id': new ObjectId(uuid),
+      '_id': uuid,
 
     };
     const card = await cardCol.findOne(filter);

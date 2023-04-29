@@ -1,13 +1,13 @@
 var express = require('express');
- var router = express.Router();
- const cardRepo = require('../src/cardMongoDBRepo');
+var router = express.Router();
+const cardRepo = require('../src/cardMongoDBRepo');
 const { validationResult } = require('express-validator');
 const Card = require('../src/Card');
 
 /* GET Contacts listing. */
 exports.cards_list = async function(req, res, next) {
   const data = await cardRepo.findAll();
-  res.render('cards', { title: 'LifeTracker', cards: data });
+  res.render('cards', { title: 'LifeTracker', document: data });
 };
 
 /* GET create health card */
