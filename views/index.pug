@@ -15,7 +15,7 @@ block content
     p Users can also interact with other users in the blog area.
 
   .home-login-div
-    img(src='/public/images/logo.png')
+    img(src='../images/lifetrackerlogo.png')
     h2 Sign in to LifeTracker
     .home-login-form
       form(action='/register' method='POST')
@@ -30,7 +30,8 @@ block content
     .home-register-google
       button Register
       button
-        i.fa-brands.fa-google(aria-hidden='true') 
+        a(href='/')
+        i.fa-brands.fa-google(aria-hidden='true') Google Sign-in
 
   
   

@@ -25,12 +25,12 @@ block content
   hr
   .user-cards
     h2 View your LifeTracker Cards!
-    if cardDocs
-      table 
-        tr  
-          th name 
-          th macros
-        each document in cardDocs 
+    if documents
+      each document in documents
+        table 
+          tr  
+            th name 
+            th macros
           tr 
             td= document.name 
             td= document.macros 

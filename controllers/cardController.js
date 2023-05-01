@@ -5,9 +5,9 @@ const { validationResult } = require('express-validator');
 const Card = require('../src/Card');
 
 /* GET Contacts listing. */
-exports.cards_list = async function(req, res, next) {
-  const data = await cardRepo.findAll();
-  res.render('cards', { title: 'LifeTracker', document: data });
+exports.cards_list = function(req, res, next) {
+  const data = cardRepo.findAll();
+  res.render('cards', { title: 'LifeTracker', documents: data });
 };
 
 /* GET create health card */
