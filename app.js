@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+
 var passport = require('passport');
 var session = require('express-session')
 var dotenv = require('dotenv');
@@ -30,8 +31,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/cards', cardRouter);
 app.use('/users', usersRouter);
+app.use('/cards', cardRouter);
+
 app.use('/login', loginRouter)
 app.use('/register', registerRouter);
 app.use('/auth', authRouter);

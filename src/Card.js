@@ -1,5 +1,5 @@
 class Card {
-  constructor(id, name, meals, macros, calories, water, workout, type, duration, notes ) {
+  constructor(id, name, meals, macros, calories, water, workout, type, duration, notes, time ) {
     this.id = id;
     this.name = name;
     this.meals = meals;
@@ -10,6 +10,8 @@ class Card {
     this.type = type;
     this.duration = duration;
     this.notes = notes;
-    this.time;
+    this.time = time;
   }
 }
+
+module.exports = Card

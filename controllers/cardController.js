@@ -5,9 +5,9 @@ const { validationResult } = require('express-validator');
 const Card = require('../src/Card');
 
 /* GET Contacts listing. */
-exports.cards_list = function(req, res, next) {
-  const data = cardRepo.findAll();
-  res.render('cards', { title: 'LifeTracker', documents: data });
+exports.cards_list = async function(req, res, next) {
+  const data = await cardRepo.findAll();
+  res.render('cards', { title: 'LifeTracker', cards: data });
 };
 
 /* GET create health card */
@@ -29,10 +29,11 @@ exports.cards_create_post = async function(req, res, next) {
 
 /* GET single Health Card. */
 exports.cards_detail = async function(req, res, next) {
-  const card = await cardRepo.findById(req.params.id);
+  const card = await cardRepo.findById(req.params.uuid);
   if (card) {
     res.render('card', { title: 'Your Health Card', card: card });
   } else {
     res.redirect('/cards');
   }
+  
 };

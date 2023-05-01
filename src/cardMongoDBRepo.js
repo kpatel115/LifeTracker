@@ -17,7 +17,15 @@ run()
 
 const repo = {
   findAll: async () => {
-    let cards = []; // list of cards
+    let cards = [];
+    const cardCol = client.db('lifetrackerDB').collection('lifetrackerCollection');
+    const cursor = cardCol.find({});
+    await cursor.forEach(card => {
+      const aCard = new Card(card._id, card.name, card.meals, card.macros, card.calories, card.water, card.workout, card.type, card.duration, card.notes, card.time);
+      cards.push(aCard);
+    });
+    return cards;
+    /*let cards = []; // list of cards
     const cardCol = client.db('lifetrackerDB').collection('lifetrackerCollection'); // cards collection in mongodb
     const cursor = cardCol.find({});
     const cardDocs = await cursor.toArray();
@@ -29,12 +37,12 @@ const repo = {
       });
     } else {
       console.log('No cards found');
-    }
+    }*/
   },
   findById: async (uuid) => {
     const cardCol = client.db('lifetrackerDB').collection('lifetrackerCollection');
     const filter = {
-      '_id': new ObjectId(uuid)
+      '_id': new ObjectId(uuid),
     };
     const card = await cardCol.findOne(filter);
     return new Card(uuid, card.name, card.meals, card.macros, card.calories, card.water, card.workout, card.type, card.duration, card.notes, card.time );
