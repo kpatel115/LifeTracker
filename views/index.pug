@@ -16,7 +16,7 @@ block content
 
   .home-login-div
     img(src='../images/lifetrackerlogo.png')
-    h2 Sign in to LifeTracker
+    h2 Sign in to LifeTracker With Email
     .home-login-form
       form(action='/register' method='POST')
         label Username or Email
@@ -26,18 +26,20 @@ block content
         input(type='password')
         br
         button(type='submit') Sign In
-        
+    br
+    hr
+    br
     .home-register-google
-      button Register
-      button
-        a(href='/')
-        i.fa-brands.fa-google(aria-hidden='true') Google Sign-in
+      h2 Sign into LifeTracker With GOogle
+      h3 Google Sign-in 
+      
+      a(href='/auth/google')
+        i.fa-brands.fa-google(aria-hidden='true') 
 
-  
-  
-  div 
-    label Enter user account page - after signing in
-      a(href="/cards")
-        i.fa-solid.fa-arrow-right(aria-hidden='true') 
+    br
+    div 
+      label Enter user account page - after signing in
+        a(href="/cards")
+          i.fa-solid.fa-arrow-right(aria-hidden='true') 
         
         

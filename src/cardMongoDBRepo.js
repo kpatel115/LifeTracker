@@ -6,6 +6,7 @@ const client = new MongoClient(url);
 var date = new Date();
 var newdate = date.toGMTString();
 
+// Connecting to Database
 async function run() {
   await client.connect();
   return 'Connected to the MongoDB server...';
@@ -14,6 +15,7 @@ async function run() {
 run()
   .then(console.log)
   .catch(console.error);
+// 
 
 const repo = {
   findAll: async () => {
