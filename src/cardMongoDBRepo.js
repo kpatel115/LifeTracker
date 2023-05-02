@@ -54,6 +54,40 @@ const repo = {
     const cardCol = client.db('lifetrackerDB').collection('lifetrackerCollection');
     const result = await cardCol.insertOne(doc);
     console.log(`A document was inserted with the _id: ${result.insertedId}`);
+  },
+  deleteById: async (uuid) => {
+    const cardCol = client.db('lifetrackerDB').collection('lifetrackerCollection');
+    const filter = {
+      '_id': new ObjectId(uuid)
+    };
+    const result = await cardCol.deleteOne(filter);
+    if (result.deletedCount === 1) {
+      console.log("Successfully deleted a documents.");
+    } else {
+      console.log("No documents matched the query. Deleted 0 documents.");
+    }
+  },
+  update: async (card) => { 
+    const cardCol = client.db('lifetrackerDB').collection('lifetrackerCollection');
+    const filter = {
+      '_id': new ObjectId(uuid)
+    };
+    const updateDoc = {
+      $set: {
+      name: card.name,
+      meals: card.meals,
+      macros: card.macros,
+      calories: card.calories,
+      water: card.water,
+      workout: card.workout,
+      type: card.type,
+      duration: card.duration,
+      notes: card.notes,
+      time: card.time,
+      }
+    };
+    const result = await cardCol.updateOne(filter, updateDoc);
+    console.log(`${result.matchedCount} docs matched the filter, updated ${result.modifiedCount} document(s)`);
   }
 
 };

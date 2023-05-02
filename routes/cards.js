@@ -8,7 +8,8 @@ const Card = require('../models/Card')
 
 // GET User home page. (after logging in) Display User's Cards  
 router.get('/', cardController.cards_list, function(req, res, next) {
-  res.render('cards', { title: 'Life Tracker'  });
+  const data = mongoRepo.findAll()
+  res.render('cards', { title: 'Life Tracker', cards: data  });
 });
 
 /* GET Create Health Card  */
@@ -37,6 +38,38 @@ router.get('/:uuid', cardController.cards_detail, function(req, res, next) {
     res.render('card', { title: 'Your Health Card', card: card });
   } else {
     res.redirect('/cards');
+  }
+  
+});
+/* GET Delete Health Card */
+router.get('/:uuid/delete', cardController.cards_delete_get, function(req, res, next) {
+  const card = mongoRepo.findById(req.params.uuid);
+  res.render('cards_delete', { title: 'Delete A Health Card', card: card });
+});
+
+/* POST Delete Healht Card */
+router.post('/:uuid/delete', cardController.cards_delete_post, function(req, res, next) {
+  //delete from repo
+  mongoRepo.deleteById(req.params.uuid);
+  res.redirect('/cards')
+});
+
+/* GET Edit Health Card */
+router.get('/:uuid/edit', cardController.cards_edit_get, function(req, res, next) {
+  const card = mongoRepo.findById(req.params.uuid);
+  res.render('cards_edit', { title: 'Edit A Health Card', card: card });
+});
+
+/* POST Edit Health Card  */
+router.post('/:uuid/edit', cardController.contacts_edit_post, function(req, res, next) {
+  if (req.body.name.trim() === "") {
+    const card = mongoRepo.findById(req.params.uuid);
+    res.render('cards_edit', { title: "Edit a Health Card", msg: 'Please fill out the form'});
+  } else {
+    // update Database
+    const updatedCard = {id: req.params.uuid, name: req.body.name.trim(), meals: req.body.meals.trim(), macros: req.body.macros.trim(), calories: req.body.calories.trim(), water: req.body.water.trim(), workout: req.body.workout.trim(), type: req.body.type.trim(), duration: req.body.duration.trim(), notes : req.body.notes.trim(), time: req.params.time.trim() };
+    mongoRepo.update(updatedCard);
+    res.redirect(`/cards/${req.params.uuid}`);
   }
   
 });

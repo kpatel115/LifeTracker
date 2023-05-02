@@ -1,0 +1,51 @@
+extends layout
+
+block content
+  h1= title
+  p Use the form below to edit this contact.
+  hr
+  if msg 
+    p(class='error-msg')= msg
+  form(method='POST' action=`/cards/${card.id}/edit`)
+       
+      label Name
+      | 
+      input(type='text' name='name' value=card.name required)
+      br
+      label Meals
+      | 
+      input(type='textarea' name='meals' value=card.meals required)
+      br
+      label Macros
+      | 
+      input(type='textarea' name='macros' value=card.macros)
+      br
+      label Calories
+      | 
+      input(type='text' name='calories' value=card.calories)
+      br
+      label Water
+      | 
+      input(type='text' name='water' value=card.water)
+      br
+      label Workout
+      | 
+      input(type='text' name='workout' value=card.workout)
+      br
+      label Type
+      | 
+      input(type='text' name='type' value=card.type)
+      br
+      label Duration
+      | 
+      input(type='text' name='duration' value=card.duration)
+      br
+      label Notes
+      | 
+      input(type='textarea' name='notes' value=card.notes)
+      br
+    button.btn-edit(type='submit') Confirm Edit
+    | 
+    a(href=`/cards/${card.id}`) Cancel
+ 
+
