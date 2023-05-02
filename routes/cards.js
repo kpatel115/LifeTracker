@@ -8,8 +8,8 @@ const Card = require('../models/Card')
 
 // GET User home page. (after logging in) Display User's Cards  
 router.get('/', cardController.cards_list, function(req, res, next) {
-  const data = mongoRepo.findAll()
-  res.render('cards', { title: 'Life Tracker', cards: data  });
+  // const data = mongoRepo.findAll()
+  res.render('cards', { title: 'Life Tracker' });
 });
 
 /* GET Create Health Card  */
@@ -41,26 +41,27 @@ router.get('/:uuid', cardController.cards_detail, function(req, res, next) {
   }
   
 });
-/* GET Delete Health Card */
+/*
+// GET Delete Health Card 
 router.get('/:uuid/delete', cardController.cards_delete_get, function(req, res, next) {
   const card = mongoRepo.findById(req.params.uuid);
   res.render('cards_delete', { title: 'Delete A Health Card', card: card });
 });
 
-/* POST Delete Healht Card */
+// POST Delete Healht Card 
 router.post('/:uuid/delete', cardController.cards_delete_post, function(req, res, next) {
   //delete from repo
   mongoRepo.deleteById(req.params.uuid);
   res.redirect('/cards')
 });
 
-/* GET Edit Health Card */
+//GET Edit Health Card 
 router.get('/:uuid/edit', cardController.cards_edit_get, function(req, res, next) {
   const card = mongoRepo.findById(req.params.uuid);
   res.render('cards_edit', { title: 'Edit A Health Card', card: card });
 });
 
-/* POST Edit Health Card  */
+//POST Edit Health Card  
 router.post('/:uuid/edit', cardController.contacts_edit_post, function(req, res, next) {
   if (req.body.name.trim() === "") {
     const card = mongoRepo.findById(req.params.uuid);
@@ -72,7 +73,7 @@ router.post('/:uuid/edit', cardController.contacts_edit_post, function(req, res,
     res.redirect(`/cards/${req.params.uuid}`);
   }
   
-});
+});*/
 
 module.exports = router;
 

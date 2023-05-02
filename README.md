@@ -32,6 +32,9 @@ Health Tracker Application (HTML/CSS/JS/Node.js/Express/MongoDB)
 ### npm run dev
 4. Open your browser to localhost:3000 and begin using the application
 ## Insights and Results
+1. I learned a lot about how the code that we use in class works, but i faced a lot of challenges and problems. I tried to understand the code more but i got really confused and wish i started the project earlier. I faced problems like getting the google sign in to work and getting each user to have thier own cards. The closest i got to working this out is by getting two seperate dbs with one having cards work and the other only have user data pushed to it. 
+## References
+1. I got help from some of the previous code we worked on and from Brad Traversy on Youtube
 
 
 

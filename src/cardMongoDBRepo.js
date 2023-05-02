@@ -7,7 +7,7 @@ var date = new Date();
 var newdate = date.toGMTString();
 
 // Connecting to Database
-/*async function run() {
+async function run() {
   await client.connect();
   return 'Connected to the MongoDB server...';
 }
@@ -16,7 +16,7 @@ run()
   .then(console.log)
   .catch(console.error);
 // 
-*/
+
 const repo = {
   findAll: async () => {
     let cards = [];
