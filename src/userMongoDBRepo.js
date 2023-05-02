@@ -1,13 +1,14 @@
 const { MongoClient, ObjectId } = require('mongodb');
-const Card = require('./Card'); 
+const User = require('./models/User'); 
 const url = "mongodb+srv://kpatel115:f17ios89@cluster0.uemyhfp.mongodb.net/?retryWrites=true&w=majority";
 const client = new MongoClient(url);
 
 var date = new Date();
 var newdate = date.toGMTString();
 
-// Connecting to Database
-/*async function run() {
+// Connecting to Database/
+/*
+async function run() {
   await client.connect();
   return 'Connected to the MongoDB server...';
 }
@@ -20,10 +21,10 @@ run()
 const repo = {
   findAll: async () => {
     let cards = [];
-    const cardCol = client.db('lifetrackerDB').collection('lifetrackerCollection');
+    const cardCol = client.db('lifetrackerDB').collection('lifetrackerUsers');
     const cursor = cardCol.find({});
-    await cursor.forEach(card => {
-      const aCard = new Card(card._id, card.name, card.meals, card.macros, card.calories, card.water, card.workout, card.type, card.duration, card.notes, card.time);
+    await cursor.forEach(user => {
+      const aCard = new User(user._id, user.displayName, user.image, user.createdAt);
       cards.push(aCard);
     });
     return cards;

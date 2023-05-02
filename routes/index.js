@@ -1,38 +1,28 @@
 var express = require('express');
 var router = express.Router();
+var { ensureAuth, ensureGuest } = require('../middleware/auth')
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
+const Card = require('../models/Card')
+
+// User Must login First - 
+router.get('/', ensureGuest, (req, res) => {
   res.render('index', { title: 'Life Tracker' });
 });
 
-
-// GET Login Page. (after logging in) Display User's Cards  
-router.get('/login', function(req, res, next) {
-  res.render('login', { title: 'Login into Life Tracker'  });
-});
-
-// POST Register page. (after logging in) Display User's Cards  
-router.post('/login', function(req, res, next) {
-  res.render('login', { title: 'Login intto Life Tracker'  });
-});
-
-// GET Register page. (after logging in) Display User's Cards  
-router.get('/register', function(req, res, next) {
-  res.render('register', { title: 'Register for Life Tracker'  });
-});
-
-// POST Register page. (after logging in) Display User's Cards  
-router.post('/register', async function(req, res, next) {
-  //res.render('register', { title: 'Register for Life Tracker'  });
-  try{
-    const hashedPassword = await bcrypt.hash(req.body.password, 10)
-    users.push({
-      
+// Once logged in user will see cards page - User HomePage
+router.get('/cards', ensureAuth, async (req, res) => {
+  try {
+    const cards = await Card.find({ user: req.user.id }).lean()
+    res.render('cards', {
+      name: req.user.name,
+      cards,
     })
-  } catch {
-
+  } catch (err) {
+    console.error(err)
+    res.render('error/500')
   }
-});
+})
+
+
 
 module.exports = router;

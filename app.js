@@ -6,8 +6,17 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var passport = require('passport');
 var session = require('express-session')
+const User = require('./models/User');
+const mongoose = require('mongoose');
 
-var bcrypt = require('bcrypt');
+// MongoDB connection
+mongoose.connect('mongodb+srv://kpatel115:f17ios89@cluster0.uemyhfp.mongodb.net/?retryWrites=true&w=majority')
+.then(() => {
+  console.log('Database connection successful.');
+})
+.catch((err) => {
+  console.log('Database connection error.');
+});
 
 // Connecting routes and urls
 var indexRouter = require('./routes/index');
@@ -17,7 +26,11 @@ var loginRouter = require('./routes/users');
 var registerRouter = require('./routes/users');
 var authRouter = require('./routes/auth');
 
+// config file
 dotenv.config({ path: './config/config.env'})
+
+
+
 
 // Passport Config
 require('./config/passport')(passport)
