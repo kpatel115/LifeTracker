@@ -2,15 +2,17 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Noto Sans', sans-serif;
+  background-color: #40484b;
 }
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding: 50px;;
   height: 100vh;
 }
 a {
   color: #00B7FF;
 }
-
+div.home-welcome-div{
+  background-color: rgb(177, 151, 118);
+  color: rgb(15, 14, 13);
+}
 
